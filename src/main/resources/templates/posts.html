@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<!--determina que quando o parametro th for usado ele sera uma referencia ao thymeleaf sem o www!-->
+<!--determina que quando o parametro th for usado ele sera uma referencia ao thymeleaf-->
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,8 +35,8 @@
                     <span th:text="${post.autor}"></span>
                     <span th:text="${post.data}"></span>
                 </p>
-
-                <a href="#">
+<!--                #mvc.url('sigla_do_controller_que_tem_o_metodo_que_preciso#nome_do_metodo'.arg(0, id_do_post).build()-->
+                <a th:href="${(#mvc.url('DC#getPostDetails').arg(0, post.id).build())}">
                     <h4 class="card-title" style="font-weight: bold; color:black; padding-top: 5px;">
                         <span th:text="${post.titulo}"></span>
                     </h4>

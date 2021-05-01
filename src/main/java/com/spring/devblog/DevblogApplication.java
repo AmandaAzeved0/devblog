@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 //remover esse excluda da segurança apos configurar o spring security
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+//@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication
 public class DevblogApplication {
 
     public static void main(String[] args) {

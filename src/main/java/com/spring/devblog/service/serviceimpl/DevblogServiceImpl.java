@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DevblogServiceImpl implements DevblogService {
@@ -21,8 +20,8 @@ public class DevblogServiceImpl implements DevblogService {
     }
 
     @Override
-    public Optional<Post> findById(Long id) {
-        return devblogRepository.findById(id);
+    public Post findById(Long id) {
+        return devblogRepository.findById(id).get();
     }
 
     @Override
