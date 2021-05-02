@@ -1,6 +1,6 @@
 <!DOCTYPE html >
 <!--determina que quando o parametro th for usado ele sera uma referencia ao thymeleaf-->
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Dev Blog</title>
@@ -13,43 +13,45 @@
 
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1" style="font-weight: bold;">DevBlog</span>
-        <a href="/newpost" class="btn btn-primary" role="button">Novo Post</a>
-    </nav>
-</header>
-<section>
-    <div class="container" style="width: 60%; padding-bottom: 30px;">
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb" style="background-color:white; padding-left:0; ">
-                <li class="breadcrumb-item active" aria-current="page">Posts</li>
-            </ol>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">DevBlog</span>
+            <a href="/createPost" class="btn btn-primary" role="button">Novo Post</a>
         </nav>
-        <!--            th:each acessando o thymeleaf método para percorrer a lista de posts e exibi-los-->
-        <div class="card shadow-sm-white rounded" style="margin-top: 20px;" th:each=" post : ${posts}">
-            <div class="card-body">
+    </header>
 
-                <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem">
-                    <span th:text="${post.autor}"></span>
-                    <span th:text="${post.data}"></span>
-                </p>
-<!--                #mvc.url('sigla_do_controller_que_tem_o_metodo_que_preciso#nome_do_metodo'.arg(0, id_do_post).build()-->
-                <a th:href="${(#mvc.url('DC#getPostDetails').arg(0, post.id).build())}">
-                    <h4 class="card-title" style="font-weight: bold; color:black; padding-top: 5px;">
-                        <span th:text="${post.titulo}"></span>
-                    </h4>
-                </a>
-                <p class="card-text">
-                    <span th:utext="${#strings.abbreviate(post.texto,400)}"></span>
-                </p>
+    <section>
+        <div class="container" style="width: 60%; padding-bottom: 30px;">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" style="background-color:white; padding-left:0; ">
+                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+                </ol>
+            </nav>
+
+            <!--th:each acessando o thymeleaf método para percorrer a lista de posts e exibi-los-->
+            <div class="card shadow-sm-white rounded" style="margin-top: 20px;" th:each=" post : ${posts}">
+
+                <div class="card-body">
+                    <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem">
+                        <span th:text="${post.autor}"></span>
+                        <span th:text="${post.data}"></span>
+                    </p>
+    <!--                #mvc.url('sigla_do_controller_que_tem_o_metodo_que_preciso#nome_do_metodo'.arg(0, id_do_post).build()-->
+                    <a th:href="${(#mvc.url('DC#getPostDetails').arg(0, post.id).build())}">
+                        <h4 class="card-title" style="font-weight: bold; color:black; padding-top: 5px;">
+                            <span th:text="${post.titulo}"></span>
+                        </h4>
+                    </a>
+                    <p class="card-text">
+                        <span th:utext="${#strings.abbreviate(post.texto,400)}"></span>
+                    </p>
+                </div>
+
             </div>
 
         </div>
-
-    </div>
-</section>
+    </section>
 
 
 </body>
