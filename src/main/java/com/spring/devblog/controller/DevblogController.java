@@ -45,20 +45,21 @@ public class DevblogController {
         return mv;
     }
 
-    //criar post
+    // redireciona para o formulário de postagem
     @RequestMapping(value = "/createPost", method = RequestMethod.GET)
     public String getPostForm(){
         return "postForm";
     }
 
+    //criar um post
     @RequestMapping(value = "/createPost", method = RequestMethod.POST)
     public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes){
-        // @valid para verificar se o atributos poram preenchidos de forma como prevista no model
-        // BindingResult :Interface geral que representa resultados de ligação. Estende os interfacerecursos de registro de erro, permitindo que um Validatorseja aplicado e adiciona análise específica de ligação e construção de modelo.
+
         if(result.hasErrors()){
             attributes.addFlashAttribute("mensagem", "Preencha todos os campos obrigatórios");
             return "redirect:/createPost";
         }
+
         post.setData(LocalDate.now());
         ds.save(post);
         return "redirect:/posts";
@@ -90,31 +91,6 @@ public class DevblogController {
         return "redirect:/posts";
 
 	}
-
-
-
-
-
-//
-//    public  String mostrarUpdatePostForm(@PathVariable("id")long id, Model model){
-//        Post post = ds.findById(id);
-//        model.addAttribute("post", post);
-//        return "updatePost";
-//
-//    }
-//    @RequestMapping(value = "/updatePost/{id}", method = RequestMethod.POST)
-//    public String updatePost(@PathVariable("id") long id, @Valid Post post, BindingResult result, Model model) {
-//
-//        if (result.hasErrors()) {
-//            post.setId(id);
-//            return "redirect:/updatePost";
-//        }
-//        ds.save(post);
-//        return "redirect:/posts";
-//    }
-
-
-
 
 }
 

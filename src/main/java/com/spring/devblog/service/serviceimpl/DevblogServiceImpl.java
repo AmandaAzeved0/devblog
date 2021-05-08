@@ -11,9 +11,6 @@ import java.util.List;
 @Service
 @Transactional
 public class DevblogServiceImpl implements DevblogService {
-    //ponto de injeção, uma instância de DevblogRepository por meio de um campo
-    // privado usando a anotação @Autowired . No tempo de execução,
-    // Spring Data JPA irá gerar uma instância de proxy de DevblogRepository
 
     private DevblogRepository dr;
 
@@ -39,5 +36,8 @@ public class DevblogServiceImpl implements DevblogService {
     @Override
     public  void delete(Post post){ dr.delete(post);}
 
+//     private Sort sortByIdAsc() {
+//        return new Sort(Sort.Direction.DESC, "id");
+//    }
 
 }
